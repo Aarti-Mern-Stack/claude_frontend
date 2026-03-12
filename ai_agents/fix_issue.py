@@ -122,9 +122,12 @@ def main():
     )
 
     print(f"Pull request created: {pr.html_url}")
-    issue.create_comment(
-        f"AI fix has been proposed in PR #{pr.number}: {pr.html_url}"
-    )
+    try:
+        issue.create_comment(
+            f"AI fix has been proposed in PR #{pr.number}: {pr.html_url}"
+        )
+    except Exception as e:
+        print(f"Warning: Could not comment on issue: {e}")
 
 
 if __name__ == "__main__":
