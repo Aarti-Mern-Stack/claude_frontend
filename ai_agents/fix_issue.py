@@ -2,7 +2,7 @@ import os
 import json
 import subprocess
 import anthropic
-from github import Github
+from github import Github, Auth
 from tl_agent import analyze_issue
 from frontend_agent import fix_frontend
 from backend_agent import fix_backend
@@ -72,7 +72,7 @@ def main():
     github_token = os.environ["GITHUB_TOKEN"]
     repo_name = os.environ.get("GITHUB_REPOSITORY", "")
 
-    gh = Github(github_token)
+    gh = Github(auth=Auth.Token(github_token))
     repo = gh.get_repo(repo_name)
     issue = repo.get_issue(number=issue_number)
 
