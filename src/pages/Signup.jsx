@@ -8,23 +8,6 @@ export default function Signup() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
   const { login } = useAuth();
-
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError('');
-    try {
-      const res = await api.post('/auth/signup', form);
-      login(res.data.token, res.data.user || { email: form.email, name: form.name });
-      navigate('/dashboard');
-    } catch (err) {
-      setError(err.response?.data?.message || 'Signup failed');
-    }
-  };
-
   return (
     <div className="auth-container">
       <form className="auth-form" onSubmit={handleSubmit}>
