@@ -13,17 +13,6 @@ export default function Login() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError('');
-    try {
-      const res = await api.post('/auth/login', form);
-      login(res.data.token, res.data.user || { email: form.email });
-      navigate('/dashboard');
-    } catch (err) {
-      setError(err.response?.data?.message || 'Login failed');
-    }
-  };
 
   return (
     <div className="auth-container">
