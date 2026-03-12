@@ -1,12 +1,12 @@
 import os
 import subprocess
-from github import Github
+from github import Github, Auth
 import anthropic
 
 github_token = os.getenv("GITHUB_TOKEN")
 anthropic_key = os.getenv("ANTHROPIC_API_KEY")
 
-g = Github(github_token)
+g = Github(auth=Auth.Token(github_token))
 repo = g.get_repo(os.getenv("GITHUB_REPOSITORY"))
 
 issue_number = int(os.getenv("ISSUE_NUMBER"))
@@ -29,7 +29,7 @@ Return the fixed code.
 """
 
 response = client.messages.create(
- model="claude-3-5-sonnet-latest",
+ model="claude-sonnet-4-6",
     max_tokens=1000,
     messages=[{"role": "user", "content": prompt}]
 )
