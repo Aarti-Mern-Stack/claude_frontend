@@ -44,7 +44,10 @@ subprocess.run(["git", "checkout", "-b", branch])
 subprocess.run(["git", "add", "."])
 subprocess.run(["git", "commit", "-m", f"AI fix for issue #{issue_number}"])
 
-# push branch
+# push branch using token-authenticated URL
+github_repo = os.getenv("GITHUB_REPOSITORY")
+remote_url = f"https://x-access-token:{github_token}@github.com/{github_repo}.git"
+subprocess.run(["git", "remote", "set-url", "origin", remote_url])
 subprocess.run(["git", "push", "origin", branch])
 
 # create PR
