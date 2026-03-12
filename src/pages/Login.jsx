@@ -17,7 +17,6 @@ export default function Login() {
     e.preventDefault();
     setError('');
     try {
-      login(res.data.token, res.data.user || { email: form.email });
       navigate('/dashboard');
     } catch (err) {
       setError(err.response?.data?.message || 'Login failed');
