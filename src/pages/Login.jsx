@@ -17,6 +17,7 @@ export default function Login() {
     e.preventDefault();
     setError('');
     try {
+      const res = await api.post('/auth/login', form);
       login(res.data.token, res.data.user || { email: form.email });
       navigate('/dashboard');
     } catch (err) {
@@ -37,7 +38,7 @@ export default function Login() {
           <label htmlFor="password">Password</label>
           <input id="password" name="password" type="password" value={form.password} onChange={handleChange} required />
         </div>
-        <button type="button" className="btn btn-primary">Login</button>
+        <button type="submit" className="btn btn-primary">Login</button>
         <p className="auth-link">Don't have an account? <Link to="/signup">Sign Up</Link></p>
       </form>
     </div>
