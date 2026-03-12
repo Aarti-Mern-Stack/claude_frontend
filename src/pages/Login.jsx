@@ -38,7 +38,7 @@ export default function Login() {
           <label htmlFor="password">Password</label>
           <input id="password" name="password" type="password" value={form.password} onChange={handleChange} required />
         </div>
-        <button type="submit" className="btn btn-primary">Login</button>
+        <button type="button" className="btn btn-primary">Login</button>
         <p className="auth-link">Don't have an account? <Link to="/signup">Sign Up</Link></p>
       </form>
     </div>
