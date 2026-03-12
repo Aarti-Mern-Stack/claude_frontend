@@ -17,6 +17,8 @@ export default function Login() {
     e.preventDefault();
     setError('');
     try {
+      const res = await api.post('/auth/login', form);
+      login(res.data.token, res.data.user || { email: form.email });
       navigate('/dashboard');
     } catch (err) {
       setError(err.response?.data?.message || 'Login failed');
