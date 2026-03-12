@@ -29,7 +29,7 @@ Return the fixed code.
 """
 
 response = client.messages.create(
-    model="claude-3-sonnet-20240229",
+ model="claude-3-5-sonnet-latest",
     max_tokens=1000,
     messages=[{"role": "user", "content": prompt}]
 )
